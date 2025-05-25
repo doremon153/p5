@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prime Factor Finder</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+    </style>
+</head>
+<body>
+    <h1>Prime Factor Finder</h1>
+    <input type="number" id="numberInput" placeholder="Enter a number" min="1">
+    <button onclick="findPrimeFactors()">Find Prime Factors</button>
+    <div id="result"></div>
+
+    <script>
+        function findPrimeFactors() {
+            const num = parseInt(document.getElementById('numberInput').value);
+            if (isNaN(num) || num < 1) {
+                document.getElementById('result').innerText = "Please enter a positive integer.";
+                return;
+            }
+
+            let factors = [];
+            let n = num;
+            
+            for (let i = 2; i <= n; i++) {
+                while (n % i === 0) {
+                    factors.push(i);
+                    n /= i;
+                }
+            }
+
+            document.getElementById('result').innerText = 
+                factors.length ? "Prime Factors: " + factors.join(', ') : "No prime factors found.";
+        }
+    </script>
+</body>
+</html>
